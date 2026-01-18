@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haragi - Asador Argentino en el País Vasco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --beige: #FDF4E6;
+            --rojo-brasa: #720123;
+            --negro: #222222;
+            --madera: #E1B173;
+        }
+
+        body {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--negro);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(34, 34, 34, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            color: var(--beige);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--beige);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--madera);
+        }
+
+        .cta-nav {
+            background: var(--rojo-brasa);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-nav:hover {
+            background: #8a0228;
+            transform: scale(1.05);
+        }
+
+        .lang-selector {
+            background: transparent;
+            border: 1px solid var(--madera);
+            color: var(--beige);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            z-index: -1;
+        }
+
+        .hero-content {
+            color: var(--beige);
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--rojo-brasa);
+            color: var(--beige);
+        }
+
+        .btn-primary:hover {
+            background: #8a0228;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(114, 1, 35, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--beige);
+            border: 2px solid var(--beige);
+        }
+
+        .btn-secondary:hover {
+            background: var(--beige);
+            color: var(--negro);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--negro);
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: var(--rojo-brasa);
+            margin-bottom: 1rem;
+        }
+
+        .concepto {
+            background: var(--beige);
+        }
+
+        .concepto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .concepto-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .concepto-img {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .concepto-img video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pilares {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pilar {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .pilar:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .pilar h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--rojo-brasa);
+        }
+
+        .pilar p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .menus {
+            background: white;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--negro);
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .menu-tab.active {
+            background: var(--rojo-brasa);
+            color: var(--beige);
+            border-color: var(--rojo-brasa);
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--beige);
+            border: none;
+            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--rojo-brasa);
+            color: var(--beige);
+        }
+
+        .menu-content {
+            min-height: 400px;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: var(--beige);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            padding: 1.5rem;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--rojo-brasa);
+        }
+
+        .menu-item p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .menu-price {
+            font-size: 1.2rem;
+            color: var(--negro);
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .menu-category-title {
+            font-size: 2rem;
+            color: var(--rojo-brasa);
+            margin: 2rem 0 1rem 0;
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .menu-download {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .reservas {
+            background: var(--beige);
+        }
+
+        .reserva-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--negro);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--rojo-brasa);
+        }
+
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .horario-option {
+            position: relative;
+        }
+
+        .horario-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .horario-option label {
+            display: block;
+            padding: 1rem;
+            background: var(--beige);
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .horario-option input[type="radio"]:checked + label {
+            background: var(--rojo-brasa);
+            color: var(--beige);
+            border-color: var(--rojo-brasa);
+        }
+
+        .contacto {
+            background: white;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contacto-info {
+            background: var(--beige);
+            padding: 3rem;
+            border-radius: 8px;
+        }
+
+        .contacto-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contacto-info p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mapa {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--madera), var(--rojo-brasa));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: var(--negro);
+            color: var(--beige);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--madera);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--beige);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--madera);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(253, 244, 230, 0.2);
+            opacity: 0.7;
+        }
+
+        .confirmacion {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--beige);
+        }
+
+        .confirmacion-content {
+            background: white;
+            padding: 4rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .checkmark {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .confirmacion-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--negro);
+        }
+
+        .reserva-detalles {
+            background: var(--beige);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .reserva-detalles p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .concepto-grid,
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pilares {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            .horarios-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">HARAGI</div>
+            <ul class="nav-links">
+                <li><a href="#home" data-i18n="nav.home">Inicio</a></li>
+                <li><a href="#concepto" data-i18n="nav.concept">Concepto</a></li>
+                <li><a href="#menus" data-i18n="nav.menus">Menús</a></li>
+                <li><a href="#reservas" class="cta-nav" data-i18n="nav.reservations">Reservas</a></li>
+                <li>
+                    <select class="lang-selector" id="langSelector">
+                        <option value="es">ES</option>
+                        <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                        <option value="eu">EU</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="fire.mp4" type="video/mp4">
+</video>
+        
+        <div class="hero-content">
+            <h1>HARAGI</h1>
+            <p data-i18n="hero.tagline">Más que carne, un compromiso</p>
+            <div class="hero-buttons">
+                <a href="#menus" class="btn btn-primary" data-i18n="hero.viewMenu">Ver Menú</a>
+                <a href="#reservas" class="btn btn-secondary" data-i18n="hero.reserve">Reservar Mesa</a>
+            </div>
+        </div>
+    </section>
+<section id="concepto" class="concepto">
+    <h2 class="section-title" data-i18n="concept.title">Nuestro Concepto</h2>
+    
+    <div class="concepto-grid">
+        <div class="concepto-img">
+            <video autoplay muted loop playsinline>
+                <source src="video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+        </div>
+        <div class="concepto-text">
+            <h3 class="section-subtitle" data-i18n="concept.subtitle">El Ritual del Asado</h3>
+            <p data-i18n="concept.text1">En Haragi fusionamos la tradición centenaria del asado argentino con la excelencia del producto vasco. Cada corte es seleccionado con rigurosidad, cada brasa preparada con paciencia, cada momento diseñado para compartir.</p>
+            <p data-i18n="concept.text2">Nuestro compromiso va más allá de la carne: es un homenaje a la cultura del fuego, del tiempo compartido, de la mesa como lugar de encuentro. Aquí el asado no es solo cocina, es ceremonia.</p>
+        </div>
+    </div>
+</section>
+
+        <div class="pilares">
+            <div class="pilar">
+                <h3 data-i18n="pillars.tradition.title">Tradición Argentina</h3>
+                <p data-i18n="pillars.tradition.text">El arte de la parrilla transmitido por generaciones. Las técnicas clásicas del asado trabajados con tiempo y respeto por el fuego.</p>
+            </div>
+            <div class="pilar">
+                <h3 data-i18n="pillars.product.title">Producto Vasco</h3>
+                <p data-i18n="pillars.product.text">Productos vascos, carne de ganadería local e ingredientes de temporada. Lo mejor del país vasco en nuestra parrilla.</p>
+            </div>
+            <div class="pilar">
+                <h3 data-i18n="pillars.experience.title">Experiencia Compartida</h3>
+                <p data-i18n="pillars.experience.text">Adéntrate a un espacio donde puedes experimentar la unión de la cultura vasca y argentina en la parrilla. Momentos de encuentro a un ritmo pausado que se disfrutan sin prisa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menus" class="menus">
+        <h2 class="section-title" data-i18n="menus.title">Nuestros Menús</h2>
+        
+        <div class="menu-tabs">
+            <button class="menu-tab active" data-menu="carta" data-i18n="menus.carta">Carta</button>
+            <button class="menu-tab" data-menu="ritual" data-i18n="menus.ritual">Menú Ritual del Asado - 120€</button>
+        </div>
+
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all" data-i18n="menus.filters.all">Todos</button>
+            <button class="filter-btn" data-filter="embutidos-curados" data-i18n="menus.filters.cured">Embutidos Curados</button>
+            <button class="filter-btn" data-filter="embutidos-parrilla" data-i18n="menus.filters.grilled">Embutidos a la Parrilla</button>
+            <button class="filter-btn" data-filter="casqueria" data-i18n="menus.filters.offal">Casquería</button>
+            <button class="filter-btn" data-filter="carnes-rapida" data-i18n="menus.filters.quickMeats">Cortes de Cocción Rápida</button>
+            <button class="filter-btn" data-filter="carnes-lenta" data-i18n="menus.filters.slowMeats">Cortes de Larga Cocción</button>
+            <button class="filter-btn" data-filter="acompañamientos" data-i18n="menus.filters.sides">Acompañamientos</button>
+            <button class="filter-btn" data-filter="verduras" data-i18n="menus.filters.vegetables">Verduras</button>
+            <button class="filter-btn" data-filter="postres" data-i18n="menus.filters.desserts">Postres</button>
+        </div>
+
+        <div class="menu-content" id="menuContent"></div>
+
+        <div class="menu-download">
+    <a href="menu.pdf" download class="btn btn-primary" data-i18n="menus.download">Descargar Carta PDF</a>
+</div>
+
+    </section>
+
+    <section id="reservas" class="reservas">
+        <h2 class="section-title" data-i18n="reservations.title">Reserva Tu Mesa</h2>
+        
+        <form class="reserva-form" id="reservaForm">
+            <div class="form-group">
+                <label for="nombre" data-i18n="reservations.form.name">Nombre completo *</label>
+                <input type="text" id="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono" data-i18n="reservations.form.phone">Teléfono *</label>
+                <input type="tel" id="telefono" required>
+            </div>
+
+            <div class="form-group">
+                <label for="personas" data-i18n="reservations.form.people">Número de personas *</label>
+                <select id="personas" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="1">1 persona</option>
+                    <option value="2">2 personas</option>
+                    <option value="3">3 personas</option>
+                    <option value="4">4 personas</option>
+                    <option value="5">5 personas</option>
+                    <option value="6">6 personas</option>
+                    <option value="7">7 personas</option>
+                    <option value="8">8 personas</option>
+                    <option value="9+">9+ personas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha" data-i18n="reservations.form.date">Fecha *</label>
+                <input type="date" id="fecha" required>
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="reservations.form.time">Horario *</label>
+                <div class="horarios-grid">
+                    <div class="horario-option">
+                        <input type="radio" id="h1300" name="horario" value="13:00" required>
+                        <label for="h1300">13:00</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h1330" name="horario" value="13:30">
+                        <label for="h1330">13:30</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h1400" name="horario" value="14:00">
+                        <label for="h1400">14:00</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h1445" name="horario" value="14:45">
+                        <label for="h1445">14:45</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h1900" name="horario" value="19:00">
+                        <label for="h1900">19:00</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h2000" name="horario" value="20:00">
+                        <label for="h2000">20:00</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h2030" name="horario" value="20:30">
+                        <label for="h2030">20:30</label>
+                    </div>
+                    <div class="horario-option">
+                        <input type="radio" id="h2130" name="horario" value="21:30">
+                        <label for="h2130">21:30</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentarios" data-i18n="reservations.form.comments">Comentarios adicionales</label>
+                <textarea id="comentarios" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="reservations.form.submit">Confirmar Reserva</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-i18n="footer.language">Idioma</h4>
+                <p>Español</p>
+                <p>English</p>
+                <p>Français</p>
+                <p>Euskera</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Haragi. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // TRADUCCIONES
+        const translations = {
+            es: {
+                nav: {
+                    home: "Inicio",
+                    concept: "Concepto",
+                    menus: "Menús",
+                    reservations: "Reservas"
+                },
+                hero: {
+                    tagline: "Más que carne, un compromiso",
+                    viewMenu: "Ver Menú",
+                    reserve: "Reservar Mesa"
+                },
+                concept: {
+                    title: "Nuestro Concepto",
+                    subtitle: "El Ritual del Asado",
+                    text1: "En Haragi fusionamos la tradición centenaria del asado argentino con la excelencia del producto vasco. Cada corte es seleccionado con rigurosidad, cada brasa preparada con paciencia, cada momento diseñado para compartir.",
+                    text2: "Nuestro compromiso va más allá de la carne: es un homenaje a la cultura del fuego, del tiempo compartido, de la mesa como lugar de encuentro. Aquí el asado no es solo cocina, es ceremonia."
+                },
+                pillars: {
+                    tradition: {
+                        title: "Tradición Argentina",
+                        text: "El arte de la parrilla transmitido por generaciones. Las técnicas clásicas del asado trabajados con tiempo y respeto por el fuego."
+                    },
+                    product: {
+                        title: "Producto Vasco",
+                        text: "Productos vascos, carne de ganadería local e ingredientes de temporada. Lo mejor del país vasco en nuestra parrilla."
+                    },
+                    experience: {
+                        title: "Experiencia Compartida",
+                        text: "Adéntrate a un espacio donde puedes experimentar la unión de la cultura vasca y argentina en la parrilla. Momentos de encuentro a un ritmo pausado que se disfrutan sin prisa."
+                    }
+                },
+                menus: {
+                    title: "Nuestros Menús",
+                    carta: "Carta",
+                    ritual: "Menú Ritual del Asado - 120€",
+                    filters: {
+                        all: "Todos",
+                        cured: "Embutidos Curados",
+                        grilled: "Embutidos a la Parrilla",
+                        offal: "Casquería",
+                        quickMeats: "Cortes de Cocción Rápida",
+                        slowMeats: "Cortes de Larga Cocción",
+                        sides: "Acompañamientos",
+                        vegetables: "Verduras",
+                        desserts: "Postres"
+                    },
+                    download: "Descargar Carta PDF"
+                },
+                reservations: {
+                    title: "Reserva Tu Mesa",
+                    form: {
+                        name: "Nombre completo *",
+                        phone: "Teléfono *",
+                        people: "Número de personas *",
+                        date: "Fecha *",
+                        time: "Horario *",
+                        comments: "Comentarios adicionales",
+                        submit: "Confirmar Reserva"
+                    },
+                    confirmation: {
+                        title: "Reserva Confirmada",
+                        thanks: "Gracias por tu reserva",
+                        details: "Detalles de tu reserva:",
+                        date: "Fecha:",
+                        time: "Hora:",
+                        people: "Comensales:",
+                        email: "Hemos enviado un email de confirmación a",
+                        back: "Volver al inicio"
+                    }
+                },
+                contact: {
+                    title: "Contacto",
+                    hours: "Horarios"
+                },
+                footer: {
+                    hours: "Horarios:",
+                    follow: "Síguenos",
+                    language: "Idioma",
+                    rights: "Todos los derechos reservados."
+                }
+            },
+            en: {
+                nav: {
+                    home: "Home",
+                    concept: "Concept",
+                    menus: "Menus",
+                    reservations: "Reservations"
+                },
+                hero: {
+                    tagline: "More than meat, a commitment",
+                    viewMenu: "View Menu",
+                    reserve: "Book a Table"
+                },
+                concept: {
+                    title: "Our Concept",
+                    subtitle: "The Asado Ritual",
+                    text1: "At Haragi we merge the centuries-old tradition of Argentine asado with the excellence of Basque products. Each cut is carefully selected, each ember prepared with patience, each moment designed to share.",
+                    text2: "Our commitment goes beyond meat: it's a tribute to the culture of fire, shared time, and the table as a meeting place. Here, asado is not just cooking, it's ceremony."
+                },
+                pillars: {
+                    tradition: {
+                        title: "Argentine Tradition",
+                        text: "The art of the grill passed down through generations. Classic asado techniques worked with time and respect for fire."
+                    },
+                    product: {
+                        title: "Basque Product",
+                        text: "Basque products, locally raised meat and seasonal ingredients. The best of the Basque Country on our grill."
+                    },
+                    experience: {
+                        title: "Shared Experience",
+                        text: "Enter a space where you can experience the union of Basque and Argentine culture on the grill. Meeting moments at a leisurely pace to be enjoyed without haste."
+                    }
+                },
+                menus: {
+                    title: "Our Menus",
+                    carta: "À la Carte",
+                    ritual: "Asado Ritual Menu - 120€",
+                    filters: {
+                        all: "All",
+                        cured: "Cured Meats",
+                        grilled: "Grilled Sausages",
+                        offal: "Offal",
+                        quickMeats: "Quick-Cooking Cuts",
+                        slowMeats: "Slow-Cooking Cuts",
+                        sides: "Sides",
+                        vegetables: "Vegetables",
+                        desserts: "Desserts"
+                    },
+                    download: "Download Menu PDF"
+                },
+                reservations: {
+                    title: "Book Your Table",
+                    form: {
+                        name: "Full name *",
+                        phone: "Phone *",
+                        people: "Number of people *",
+                        date: "Date *",
+                        time: "Time *",
+                        comments: "Additional comments",
+                        submit: "Confirm Reservation"
+                    },
+                    confirmation: {
+                        title: "Reservation Confirmed",
+                        thanks: "Thank you for your reservation",
+                        details: "Your reservation details:",
+                        date: "Date:",
+                        time: "Time:",
+                        people: "Guests:",
+                        email: "We have sent a confirmation email to",
+                        back: "Back to home"
+                    }
+                },
+                contact: {
+                    title: "Contact",
+                    hours: "Hours"
+                },
+                footer: {
+                    hours: "Hours:",
+                    follow: "Follow us",
+                    language: "Language",
+                    rights: "All rights reserved."
+                }
+            },
+            fr: {
+                nav: {
+                    home: "Accueil",
+                    concept: "Concept",
+                    menus: "Menus",
+                    reservations: "Réservations"
+                },
+                hero: {
+                    tagline: "Plus que de la viande, un engagement",
+                    viewMenu: "Voir le Menu",
+                    reserve: "Réserver une Table"
+                },
+                concept: {
+                    title: "Notre Concept",
+                    subtitle: "Le Rituel de l'Asado",
+                    text1: "Chez Haragi, nous fusionnons la tradition séculaire de l'asado argentin avec l'excellence du produit basque. Chaque pièce est sélectionnée avec rigueur, chaque braise préparée avec patience, chaque moment conçu pour partager.",
+                    text2: "Notre engagement va au-delà de la viande : c'est un hommage à la culture du feu, du temps partagé, de la table comme lieu de rencontre. Ici, l'asado n'est pas seulement de la cuisine, c'est une cérémonie."
+                },
+                pillars: {
+                    tradition: {
+                        title: "Tradition Argentine",
+                        text: "L'art du grill transmis de génération en génération. Les techniques classiques de l'asado travaillées avec temps et respect du feu."
+                    },
+                    product: {
+                        title: "Produit Basque",
+                        text: "Produits basques, viande d'élevage local et ingrédients de saison. Le meilleur du Pays Basque sur notre grill."
+                    },
+                    experience: {
+                        title: "Expérience Partagée",
+                        text: "Entrez dans un espace où vous pouvez vivre l'union de la culture basque et argentine sur le grill. Des moments de rencontre à un rythme tranquille qui se savourent sans hâte."
+                    }
+                },
+                menus: {
+                    title: "Nos Menus",
+                    carta: "À la Carte",
+                    ritual: "Menu Rituel de l'Asado - 120€",
+                    filters: {
+                        all: "Tous",
+                        cured: "Charcuterie",
+                        grilled: "Saucisses Grillées",
+                        offal: "Abats",
+                        quickMeats: "Cuisson Rapide",
+                        slowMeats: "Cuisson Lente",
+                        sides: "Accompagnements",
+                        vegetables: "Légumes",
+                        desserts: "Desserts"
+                    },
+                    download: "Télécharger Menu PDF"
+                },
+                reservations: {
+                    title: "Réservez Votre Table",
+                    form: {
+                        name: "Nom complet *",
+                        phone: "Téléphone *",
+                        people: "Nombre de personnes *",
+                        date: "Date *",
+                        time: "Heure *",
+                        comments: "Commentaires",
+                        submit: "Confirmer la Réservation"
+                    },
+                    confirmation: {
+                        title: "Réservation Confirmée",
+                        thanks: "Merci pour votre réservation",
+                        details: "Détails de votre réservation:",
+                        date: "Date:",
+                        time: "Heure:",
+                        people: "Convives:",
+                        email: "Nous avons envoyé un email de confirmation à",
+                        back: "Retour à l'accueil"
+                    }
+                },
+                contact: {
+                    title: "Contact",
+                    hours: "Horaires"
+                },
+                footer: {
+                    hours: "Horaires:",
+                    follow: "Suivez-nous",
+                    language: "Langue",
+                    rights: "Tous droits réservés."
+                }
+            },
+            eu: {
+                nav: {
+                    home: "Hasiera",
+                    concept: "Kontzeptua",
+                    menus: "Menuak",
+                    reservations: "Erreserbak"
+                },
+                hero: {
+                    tagline: "Haragia baino gehiago, konpromiso bat",
+                    viewMenu: "Menua Ikusi",
+                    reserve: "Mahaia Erreserbatu"
+                },
+                concept: {
+                    title: "Gure Kontzeptua",
+                    subtitle: "Asadoaren Erritua",
+                    text1: "Haragin, asado argentinarraren mende askoko tradizioa euskal produktuaren bikaintasunarekin fusionatzen dugu. Ebaki bakoitza zorroztasunez hautatzen da, ikatz bakoitza pazientziaz prestatzen da, une bakoitza partekatzeko diseinatuta.",
+                    text2: "Gure konpromisoa haragitik haratago doa: suaren kulturari, partekatutako denborari eta mahaia topaketa-leku gisa omenaldi bat da. Hemen asadoa ez da bakarrik sukaldea, zermonia da."
+                },
+                pillars: {
+                    tradition: {
+                        title: "Argentinar Tradizioa",
+                        text: "Belaunaldiz belaunaldi transmititutako parrilla-artea. Asadoaren teknika klasikoak denbora eta suarekiko errespetuarekin lan eginda."
+                    },
+                    product: {
+                        title: "Euskal Produktua",
+                        text: "Euskal produktuak, tokiko abeltzaintzako haragia eta denboraldiko osagaiak. Euskal Herriko onena gure parrillan."
+                    },
+                    experience: {
+                        title: "Esperientzia Partekatua",
+                        text: "Sartu espazio batera non euskal eta argentinar kulturaren batasuna esperimentatu dezakezun parillan. Topaketa-uneak erritmoa geldiarekin, presarik gabe gozatzen direnak."
+                    }
+                },
+                menus: {
+                    title: "Gure Menuak",
+                    carta: "Karta",
+                    ritual: "Asadoaren Erritu Menua - 120€",
+                    filters: {
+                        all: "Guztiak",
+                        cured: "Ontzi Sendituak",
+                        grilled: "Parrillako Txorizoak",
+                        offal: "Barruak",
+                        quickMeats: "Sukalde Bizkorra",
+                        slowMeats: "Sukalde Luzea",
+                        sides: "Lagungarriak",
+                        vegetables: "Barazkiak",
+                        desserts: "Postreak"
+                    },
+                    download: "Karta PDF Deskargatu"
+                },
+                reservations: {
+                    title: "Erreserbatu Zure Mahaia",
+                    form: {
+                        name: "Izen osoa *",
+                        phone: "Telefonoa *",
+                        people: "Pertsona kopurua *",
+                        date: "Data *",
+                        time: "Ordua *",
+                        comments: "Iruzkin gehigarriak",
+                        submit: "Erreserba Baieztatu"
+                    },
+                    confirmation: {
+                        title: "Erreserba Baieztatuta",
+                        thanks: "Eskerrik asko zure erreserba",
+                        details: "Zure erreserbaren xehetasunak:",
+                        date: "Data:",
+                        time: "Ordua:",
+                        people: "Mahaikideak:",
+                        email: "Baieztapen email bat bidali dugu hona",
+                        back: "Hasierara itzuli"
+                    }
+                },
+                contact: {
+                    title: "Kontaktua",
+                    hours: "Ordutegia"
+                },
+                footer: {
+                    hours: "Ordutegia:",
+                    follow: "Jarraitu gaitzazu",
+                    language: "Hizkuntza",
+                    rights: "Eskubide guztiak erreserbatuak."
+                }
+            }
+        };
+
+        // DATOS DE MENÚS
+        const menuData = {
+            carta: {
+                'embutidos-curados': [
+                    { name: 'Bondiola curada', desc: 'Curación lenta, corte fino', price: '17€' },
+                    { name: 'Salami argentino', desc: 'Elaboración artesanal', price: '16€' },
+                    { name: 'Longaniza argentina', desc: 'Secado natural, sabor profundo', price: '16€' }
+                ],
+                'embutidos-parrilla': [
+                    { name: 'Chorizo criollo', desc: 'Asado a las brasas', price: '15€' },
+                    { name: 'Morcilla', desc: 'Tradicional, ligeramente crujiente por fuera', price: '15€' }
+                ],
+                'casqueria': [
+                    { name: 'Chinchulines', desc: 'Limpios y dorados a fuego vivo', price: '19€' },
+                    { name: 'Molleja', desc: 'Crujiente por fuera, cremosa en su interior', price: '28€' }
+                ],
+                'carnes-rapida': [
+                    { name: 'Entraña', desc: 'Corte jugoso, marcado a la parrilla', price: '30€' },
+                    { name: 'Chuleta de vaca vieja', desc: 'Madurada y asada al punto', price: '80€/kg' }
+                ],
+                'carnes-lenta': [
+                    { name: 'Asado de tira / Costillar', desc: 'Cocción lenta a las brasas', price: '35€' },
+                    { name: 'Vacío', desc: 'Tierna y jugosa, sabor intenso', price: '35€' },
+                    { name: 'Falda', desc: 'Corte tradicional, meloso y profundo', price: '30€' }
+                ],
+                'acompañamientos': [
+                    { name: 'Provoleta a la parrilla', desc: 'Argentinos', price: '14€' },
+                    { name: 'Chimichurri', desc: '', price: '' },
+                    { name: 'Salsa Criolla', desc: '', price: '' },
+                    { name: 'Pimientos del piquillo', desc: 'Vascos', price: '12€' }
+                ],
+                'verduras': [
+                    { name: 'Setas de temporada', desc: '', price: '18€' },
+                    { name: 'Alcachofa', desc: '', price: '17€' },
+                    { name: 'Espárrago', desc: '', price: '' },
+                    { name: 'Guisante lágrima', desc: '', price: '22€' }
+                ],
+                'postres': [
+                    { name: 'Tarta de dulce de leche', desc: '', price: '12€' },
+                    { name: 'Alfajores artesanos', desc: '', price: '10€' },
+                    { name: 'Tarta de queso', desc: '', price: '12€' }
+                ]
+            },
+            ritual: {
+                'completo': [
+                    {
+                        name: 'Menú Ritual del Asado - 120€ por persona',
+                        desc: 'Experiencia completa del asado argentino',
+                        items: [
+                            'Primer tiempo: Bondiola curada, Salami argentino, Longaniza argentina',
+                            'Segundo tiempo: Chorizo criollo, Morcilla',
+                            'Tercer tiempo: Chinchulines, Molleja',
+                            'Cuarto tiempo: Entraña',
+                            'Quinto tiempo: Costillar (asado de tira), Vacío, Falda',
+                            'Acompañamientos: Provoleta a la parrilla, Salsas tradicionales (chimichurri, salsa criolla)',
+                            'Sexto tiempo: Degustación de tres tipos de alfajores y El vigilante (queso fresco con membrillo)'
+                        ],
+                        price: '120€'
+                    }
+                ]
+            }
+        };
+
+        let currentLang = 'es';
+        let currentMenu = 'carta';
+        let currentFilter = 'all';
+
+        // FUNCIÓN DE TRADUCCIÓN
+        function translate() {
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const keys = elem.getAttribute('data-i18n').split('.');
+                let value = translations[currentLang];
+                keys.forEach(key => value = value[key]);
+                elem.textContent = value;
+            });
+        }
+
+        // RENDERIZAR MENÚ
+        function renderMenu() {
+            const container = document.getElementById('menuContent');
+            container.innerHTML = '';
+
+            if (currentMenu === 'ritual') {
+                const ritualItem = menuData.ritual.completo[0];
+                const menuHtml = `
+                    <div class="menu-items">
+                        <div class="menu-item" style="grid-column: 1 / -1;">
+                            <div>
+                                <h3>${ritualItem.name}</h3>
+                                <p style="font-size: 1.1rem; margin-bottom: 1rem;">${ritualItem.desc}</p>
+                                ${ritualItem.items.map(item => `<p style="margin-bottom: 0.5rem;">• ${item}</p>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = menuHtml;
+            } else {
+                let html = '<div class="menu-items">';
+                
+                const categories = currentFilter === 'all' 
+                    ? Object.keys(menuData.carta) 
+                    : [currentFilter];
+
+                categories.forEach(category => {
+                    if (menuData.carta[category]) {
+                        menuData.carta[category].forEach(item => {
+                            html += `
+                                <div class="menu-item" data-category="${category}">
+                                    <div>
+                                        <h3>${item.name}</h3>
+                                        ${item.desc ? `<p>${item.desc}</p>` : ''}
+                                        ${item.price ? `<div class="menu-price">${item.price}</div>` : ''}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                });
+
+                html += '</div>';
+                container.innerHTML = html;
+            }
+        }
+
+        // CAMBIAR IDIOMA
+        document.getElementById('langSelector').addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            translate();
+        });
+
+        // TABS DE MENÚ
+        document.querySelectorAll('.menu-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentMenu = tab.getAttribute('data-menu');
+                renderMenu();
+            });
+        });
+
+        // FILTROS
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                renderMenu();
+            });
+        });
+
+        // VALIDAR FECHA (NO FECHAS PASADAS)
+        const fechaInput = document.getElementById('fecha');
+        const today = new Date().toISOString().split('T')[0];
+        fechaInput.setAttribute('min', today);
+
+        // FORMULARIO DE RESERVA
+        document.getElementById('reservaForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const fecha = document.getElementById('fecha').value;
+            const horario = document.querySelector('input[name="horario"]:checked').value;
+            const personas = document.getElementById('personas').value;
+
+            // Guardar en localStorage
+            const reserva = { nombre, email, fecha, horario, personas };
+            localStorage.setItem('ultimaReserva', JSON.stringify(reserva));
+
+            // Mostrar confirmación
+            const formattedDate = new Date(fecha).toLocaleDateString('es-ES');
+            alert(`✓ Reserva Confirmada!\n\nGracias ${nombre},\n\nFecha: ${formattedDate}\nHora: ${horario}\nPersonas: ${personas}\n\nHemos enviado una confirmación a ${email}`);
+            
+            // Resetear formulario
+            e.target.reset();
+        });
+
+        // INICIALIZAR
+        translate();
+        renderMenu();
+    </script>
+</body>
+</html>>HARAGI</h4>
+                <p data-i18n="footer.hours">Horarios:</p>
+                <p>L-D: 13:00-16:00</p>
+                <p>19:00-23:00</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer.follow">Síguenos</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+            <div class="footer-section">
+                <h4
