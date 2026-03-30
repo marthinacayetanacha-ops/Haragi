@@ -111,6 +111,42 @@
             z-index: -2;
         }
 
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(114, 1, 35, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            background: rgba(114, 1, 35, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid var(--beige);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .play-button.hidden {
+            display: none;
+        }
+
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -1565,6 +1601,55 @@
 
         translate();
         renderMenu();
+
+        // Manejo de reproducción de videos
+        function setupVideo(videoId, buttonId) {
+            const video = document.getElementById(videoId);
+            const playButton = document.getElementById(buttonId);
+            
+            if (!video || !playButton) return;
+
+            // Intentar autoplay
+            video.play().then(() => {
+                playButton.classList.add('hidden');
+            }).catch(() => {
+                // Si autoplay falla, mostrar botón
+                playButton.classList.remove('hidden');
+            });
+
+            // Click en botón para reproducir
+            playButton.addEventListener('click', () => {
+                video.play();
+                playButton.classList.add('hidden');
+            });
+
+            // Si el video se reproduce, ocultar botón
+            video.addEventListener('playing', () => {
+                playButton.classList.add('hidden');
+            });
+
+            // Si el video se pausa, mostrar botón
+            video.addEventListener('pause', () => {
+                playButton.classList.remove('hidden');
+            });
+
+            // Verificar si el video cargó correctamente
+            video.addEventListener('error', (e) => {
+                console.error('Error al cargar video:', videoId, e);
+                playButton.style.background = 'rgba(255, 0, 0, 0.8)';
+            });
+        }
+
+        // Inicializar videos cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setupVideo('heroVideo', 'playButtonHero');
+                setupVideo('conceptoVideo', 'playButtonConcepto');
+            });
+        } else {
+            setupVideo('heroVideo', 'playButtonHero');
+            setupVideo('conceptoVideo', 'playButtonConcepto');
+        }
     </script>
 </body>
 </html>
