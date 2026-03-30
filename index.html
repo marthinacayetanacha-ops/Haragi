@@ -111,6 +111,42 @@
             z-index: -2;
         }
 
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(114, 1, 35, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            background: rgba(114, 1, 35, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid var(--beige);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .play-button.hidden {
+            display: none;
+        }
+
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -234,7 +270,7 @@
 
         .pilares {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -264,8 +300,12 @@
             line-height: 1.6;
         }
 
-        .menus {
+        .menus, .vinos {
             background: white;
+        }
+
+        .vinos {
+            background: var(--beige);
         }
 
         .menu-tabs {
@@ -358,11 +398,53 @@
             margin-top: 0.5rem;
         }
 
-        .menu-category-title {
-            font-size: 2rem;
-            color: var(--rojo-brasa);
-            margin: 2rem 0 1rem 0;
+        .wine-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .wine-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .wine-category h3 {
             font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            color: var(--rojo-brasa);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--madera);
+            padding-bottom: 0.5rem;
+        }
+
+        .wine-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .wine-item:last-child {
+            border-bottom: none;
+        }
+
+        .wine-name {
+            font-size: 1.1rem;
+            color: var(--negro);
+            flex: 1;
+        }
+
+        .wine-price {
+            font-size: 1.1rem;
+            color: var(--rojo-brasa);
+            font-weight: bold;
+            margin-left: 1rem;
         }
 
         .menu-download {
@@ -374,13 +456,53 @@
             background: var(--beige);
         }
 
-        .reserva-form {
-            max-width: 600px;
+        .reserva-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .reserva-form {
             background: white;
             padding: 3rem;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .politicas-reserva {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .politicas-reserva h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            color: var(--rojo-brasa);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .politica-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--beige);
+            border-radius: 4px;
+            border-left: 4px solid var(--rojo-brasa);
+        }
+
+        .politica-item h4 {
+            font-size: 1.3rem;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .politica-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .form-group {
@@ -445,45 +567,6 @@
             border-color: var(--rojo-brasa);
         }
 
-        .contacto {
-            background: white;
-        }
-
-        .contacto-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contacto-info {
-            background: var(--beige);
-            padding: 3rem;
-            border-radius: 8px;
-        }
-
-        .contacto-info h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contacto-info p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .mapa {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--madera), var(--rojo-brasa));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
         footer {
             background: var(--negro);
             color: var(--beige);
@@ -524,50 +607,22 @@
             opacity: 0.7;
         }
 
-        .confirmacion {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--beige);
-        }
-
-        .confirmacion-content {
-            background: white;
-            padding: 4rem;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 600px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .checkmark {
-            font-size: 5rem;
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-
-        .confirmacion-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--negro);
-        }
-
-        .reserva-detalles {
-            background: var(--beige);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .reserva-detalles p {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
         .hidden {
             display: none !important;
+        }
+
+        @media (max-width: 1024px) {
+            .pilares {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .wine-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .reserva-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -587,8 +642,7 @@
                 flex-direction: column;
             }
 
-            .concepto-grid,
-            .contacto-grid {
+            .concepto-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -622,6 +676,7 @@
                 <li><a href="#home" data-i18n="nav.home">Inicio</a></li>
                 <li><a href="#concepto" data-i18n="nav.concept">Concepto</a></li>
                 <li><a href="#menus" data-i18n="nav.menus">Menús</a></li>
+                <li><a href="#vinos" data-i18n="nav.wines">Vinos</a></li>
                 <li><a href="#reservas" class="cta-nav" data-i18n="nav.reservations">Reservas</a></li>
                 <li>
                     <select class="lang-selector" id="langSelector">
@@ -634,15 +689,12 @@
             </ul>
         </div>
     </nav>
-
-    <section id="home" class="hero">
+   <section id="home" class="hero">
         <div class="hero-overlay"></div>
        <video class="hero-video" autoplay muted loop playsinline preload="auto">
-    <source src="Fire.mp4" type="video/mp4">
+    <source src="./Fire.mp4" type="video/mp4">
   
 </video>
-
-        
         <div class="hero-content">
             <h1>HARAGI</h1>
             <p data-i18n="hero.tagline">Más que carne, un compromiso</p>
@@ -652,6 +704,7 @@
             </div>
         </div>
     </section>
+
 <section id="concepto" class="concepto">
     <h2 class="section-title" data-i18n="concept.title">Nuestro Concepto</h2>
     
@@ -660,16 +713,19 @@
             <video autoplay muted loop playsinline>
 <source src="./video.mp4" type="video/mp4">
 </video>
+            </div>
+            <div class="concepto-text">
+                <h3 class="section-subtitle" data-i18n="concept.subtitle">El Ritual del Asado</h3>
+                <p data-i18n="concept.text1">En Haragi fusionamos la tradición centenaria del asado argentino con la excelencia del producto vasco. Cada corte es seleccionado con rigurosidad, cada brasa preparada con paciencia, cada momento diseñado para compartir.</p>
+                <p data-i18n="concept.text2">Nuestro compromiso va más allá de la carne: es un homenaje a la cultura del fuego, del tiempo compartido, de la mesa como lugar de encuentro. Aquí el asado no es solo cocina, es ceremonia.</p>
+            </div>
         </div>
-        <div class="concepto-text">
-            <h3 class="section-subtitle" data-i18n="concept.subtitle">El Ritual del Asado</h3>
-            <p data-i18n="concept.text1">En Haragi fusionamos la tradición centenaria del asado argentino con la excelencia del producto vasco. Cada corte es seleccionado con rigurosidad, cada brasa preparada con paciencia, cada momento diseñado para compartir.</p>
-            <p data-i18n="concept.text2">Nuestro compromiso va más allá de la carne: es un homenaje a la cultura del fuego, del tiempo compartido, de la mesa como lugar de encuentro. Aquí el asado no es solo cocina, es ceremonia.</p>
-        </div>
-    </div>
-</section>
 
         <div class="pilares">
+            <div class="pilar">
+                <h3 data-i18n="pillars.respect.title">Respeto al Producto</h3>
+                <p data-i18n="pillars.respect.text">Trabajamos con producto local y de temporada, dando valor a cada corte y entendiendo el animal de forma completa a través de la tradición del asado argentino.</p>
+            </div>
             <div class="pilar">
                 <h3 data-i18n="pillars.tradition.title">Tradición Argentina</h3>
                 <p data-i18n="pillars.tradition.text">El arte de la parrilla transmitido por generaciones. Las técnicas clásicas del asado trabajados con tiempo y respeto por el fuego.</p>
@@ -708,106 +764,279 @@
         <div class="menu-content" id="menuContent"></div>
 
         <div class="menu-download">
-    <a href="menu.pdf" download class="btn btn-primary" data-i18n="menus.download">Descargar Carta PDF</a>
-</div>
+            <a href="menu.pdf" download class="btn btn-primary" data-i18n="menus.download">Descargar Carta PDF</a>
+        </div>
+    </section>
 
+    <section id="vinos" class="vinos">
+        <h2 class="section-title" data-i18n="wines.title">Carta de Vinos</h2>
+        
+        <div class="wine-categories">
+            <div class="wine-category">
+                <h3 data-i18n="wines.aperitivos">Aperitivos y Espumosos</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Vermut Artesano Gran Reserva</span>
+                    <span class="wine-price">15/30€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Cava Gran Reserva (Paraje Calificado)</span>
+                    <span class="wine-price">20/70€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Champagne Blanc de Blancs</span>
+                    <span class="wine-price">150€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Dom Pérignon Vintage</span>
+                    <span class="wine-price">350€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Krug Grande Cuvée</span>
+                    <span class="wine-price">450€</span>
+                </div>
+            </div>
+
+            <div class="wine-category">
+                <h3 data-i18n="wines.blancos">Vinos Blancos</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Albariño Selección Parcela (Rías Baixas)</span>
+                    <span class="wine-price">18/60€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Verdejo Fermentado en Barrica Premium</span>
+                    <span class="wine-price">75€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Chardonnay Barrica (Borgoña Village)</span>
+                    <span class="wine-price">120€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Puligny-Montrachet Premier Cru</span>
+                    <span class="wine-price">320€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Catena Zapata White Stones (Argentina)</span>
+                    <span class="wine-price">200€</span>
+                </div>
+            </div>
+
+            <div class="wine-category">
+                <h3 data-i18n="wines.tintos">Vinos Tintos</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Rioja Gran Reserva (Viñedo Singular)</span>
+                    <span class="wine-price">120€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Ribera del Duero Reserva Especial</span>
+                    <span class="wine-price">20/80€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Priorat Vinya Vella</span>
+                    <span class="wine-price">90€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Vega Sicilia Valbuena 5º</span>
+                    <span class="wine-price">260€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Vega Sicilia Único</span>
+                    <span class="wine-price">500€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Château Margaux (Grand Cru Classé)</span>
+                    <span class="wine-price">450€</span>
+                </div>
+            </div>
+
+            <div class="wine-category">
+                <h3 data-i18n="wines.argentinos">Tintos Argentinos</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Catena Zapata Nicolás Catena Zapata</span>
+                    <span class="wine-price">180€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Achaval Ferrer Finca Altamira</span>
+                    <span class="wine-price">130€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Zuccardi Finca Piedra Infinita</span>
+                    <span class="wine-price">250€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Cheval des Andes</span>
+                    <span class="wine-price">320€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Viña Cobos Malbec Bramare Single Vineyard</span>
+                    <span class="wine-price">90€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Gran Enemigo Gualtallary</span>
+                    <span class="wine-price">220€</span>
+                </div>
+            </div>
+
+            <div class="wine-category">
+                <h3 data-i18n="wines.dulces">Vinos Dulces</h3>
+                <div class="wine-item">
+                    <span class="wine-name">Oporto Tawny 10 Años</span>
+                    <span class="wine-price">17/35€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Moscatel / Late Harvest</span>
+                    <span class="wine-price">12/20€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Oporto Tawny 20 Años</span>
+                    <span class="wine-price">60€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Sauternes Grand Cru Classé</span>
+                    <span class="wine-price">90€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Tokaji Aszú 5 Puttonyos</span>
+                    <span class="wine-price">150€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">PX Gran Reserva (30 años)</span>
+                    <span class="wine-price">140€</span>
+                </div>
+                <div class="wine-item">
+                    <span class="wine-name">Château d'Yquem</span>
+                    <span class="wine-price">350€</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="reservas" class="reservas">
         <h2 class="section-title" data-i18n="reservations.title">Reserva Tu Mesa</h2>
         
-        <form class="reserva-form" id="reservaForm">
-            <div class="form-group">
-                <label for="nombre" data-i18n="reservations.form.name">Nombre completo *</label>
-                <input type="text" id="nombre" required>
+        <div class="reserva-container">
+            <div class="reserva-form">
+                <form id="reservaForm">
+                    <div class="form-group">
+                        <label for="nombre" data-i18n="reservations.form.name">Nombre completo *</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono" data-i18n="reservations.form.phone">Teléfono *</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personas" data-i18n="reservations.form.people">Número de personas *</label>
+                        <select id="personas" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6">6 personas</option>
+                            <option value="7">7 personas</option>
+                            <option value="8">8 personas</option>
+                            <option value="9+">9+ personas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha" data-i18n="reservations.form.date">Fecha *</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="reservations.form.time">Horario *</label>
+                        <div class="horarios-grid">
+                            <div class="horario-option">
+                                <input type="radio" id="h1300" name="horario" value="13:00" required>
+                                <label for="h1300">13:00</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h1330" name="horario" value="13:30">
+                                <label for="h1330">13:30</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h1400" name="horario" value="14:00">
+                                <label for="h1400">14:00</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h1445" name="horario" value="14:45">
+                                <label for="h1445">14:45</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h1900" name="horario" value="19:00">
+                                <label for="h1900">19:00</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h2000" name="horario" value="20:00">
+                                <label for="h2000">20:00</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h2030" name="horario" value="20:30">
+                                <label for="h2030">20:30</label>
+                            </div>
+                            <div class="horario-option">
+                                <input type="radio" id="h2130" name="horario" value="21:30">
+                                <label for="h2130">21:30</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comentarios" data-i18n="reservations.form.comments">Comentarios adicionales</label>
+                        <textarea id="comentarios" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="reservations.form.submit">Confirmar Reserva</button>
+                </form>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" required>
-            </div>
+            <div class="politicas-reserva">
+                <h3 data-i18n="reservations.policies.title">Políticas de Reserva</h3>
+                
+                <div class="politica-item">
+                    <h4 data-i18n="reservations.policies.deposit.title">Depósito Requerido</h4>
+                    <p data-i18n="reservations.policies.deposit.text">• Menú Degustación: 70€ por persona<br>• Menú del Día: 50€ por persona</p>
+                </div>
 
-            <div class="form-group">
-                <label for="telefono" data-i18n="reservations.form.phone">Teléfono *</label>
-                <input type="tel" id="telefono" required>
-            </div>
+                <div class="politica-item">
+                    <h4 data-i18n="reservations.policies.cancellation.title">Política de Cancelación</h4>
+                    <p data-i18n="reservations.policies.cancellation.text">Las cancelaciones deben realizarse con un mínimo de 24 horas de antelación para el reembolso del depósito.</p>
+                </div>
 
-            <div class="form-group">
-                <label for="personas" data-i18n="reservations.form.people">Número de personas *</label>
-                <select id="personas" required>
-                    <option value="">Seleccionar...</option>
-                    <option value="1">1 persona</option>
-                    <option value="2">2 personas</option>
-                    <option value="3">3 personas</option>
-                    <option value="4">4 personas</option>
-                    <option value="5">5 personas</option>
-                    <option value="6">6 personas</option>
-                    <option value="7">7 personas</option>
-                    <option value="8">8 personas</option>
-                    <option value="9+">9+ personas</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="fecha" data-i18n="reservations.form.date">Fecha *</label>
-                <input type="date" id="fecha" required>
-            </div>
-
-            <div class="form-group">
-                <label data-i18n="reservations.form.time">Horario *</label>
-                <div class="horarios-grid">
-                    <div class="horario-option">
-                        <input type="radio" id="h1300" name="horario" value="13:00" required>
-                        <label for="h1300">13:00</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h1330" name="horario" value="13:30">
-                        <label for="h1330">13:30</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h1400" name="horario" value="14:00">
-                        <label for="h1400">14:00</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h1445" name="horario" value="14:45">
-                        <label for="h1445">14:45</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h1900" name="horario" value="19:00">
-                        <label for="h1900">19:00</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h2000" name="horario" value="20:00">
-                        <label for="h2000">20:00</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h2030" name="horario" value="20:30">
-                        <label for="h2030">20:30</label>
-                    </div>
-                    <div class="horario-option">
-                        <input type="radio" id="h2130" name="horario" value="21:30">
-                        <label for="h2130">21:30</label>
-                    </div>
+                <div class="politica-item">
+                    <h4 data-i18n="reservations.policies.punctuality.title">Puntualidad</h4>
+                    <p data-i18n="reservations.policies.punctuality.text">Mantendremos su mesa reservada durante 15 minutos. Pasado este tiempo, la reserva quedará cancelada.</p>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="comentarios" data-i18n="reservations.form.comments">Comentarios adicionales</label>
-                <textarea id="comentarios" rows="3"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="reservations.form.submit">Confirmar Reserva</button>
-        </form>
+        </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4 data-i18n="footer.language">Idioma</h4>
-                <p>Español</p>
-                <p>English</p>
-                <p>Français</p>
-                <p>Euskera</p>
+                <h4>HARAGI</h4>
+                <p>Andoain, País Vasco</p>
+                <p>☎ 1234567654</p>
+                <p>✉ info@haragi.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer.hours">Horarios:</h4>
+                <p>L-D: 13:00-16:00</p>
+                <p>19:00-23:00</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer.follow">Síguenos</h4>
+                <a href="https://instagram.com/haragi.asador" target="_blank">@haragi.asador</a>
+                <a href="#">Facebook</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -816,13 +1045,13 @@
     </footer>
 
     <script>
-        // TRADUCCIONES
         const translations = {
             es: {
                 nav: {
                     home: "Inicio",
                     concept: "Concepto",
                     menus: "Menús",
+                    wines: "Vinos",
                     reservations: "Reservas"
                 },
                 hero: {
@@ -837,6 +1066,10 @@
                     text2: "Nuestro compromiso va más allá de la carne: es un homenaje a la cultura del fuego, del tiempo compartido, de la mesa como lugar de encuentro. Aquí el asado no es solo cocina, es ceremonia."
                 },
                 pillars: {
+                    respect: {
+                        title: "Respeto al Producto",
+                        text: "Trabajamos con producto local y de temporada, dando valor a cada corte y entendiendo el animal de forma completa a través de la tradición del asado argentino."
+                    },
                     tradition: {
                         title: "Tradición Argentina",
                         text: "El arte de la parrilla transmitido por generaciones. Las técnicas clásicas del asado trabajados con tiempo y respeto por el fuego."
@@ -867,6 +1100,14 @@
                     },
                     download: "Descargar Carta PDF"
                 },
+                wines: {
+                    title: "Carta de Vinos",
+                    aperitivos: "Aperitivos y Espumosos",
+                    blancos: "Vinos Blancos",
+                    tintos: "Vinos Tintos",
+                    argentinos: "Tintos Argentinos",
+                    dulces: "Vinos Dulces"
+                },
                 reservations: {
                     title: "Reserva Tu Mesa",
                     form: {
@@ -878,25 +1119,25 @@
                         comments: "Comentarios adicionales",
                         submit: "Confirmar Reserva"
                     },
-                    confirmation: {
-                        title: "Reserva Confirmada",
-                        thanks: "Gracias por tu reserva",
-                        details: "Detalles de tu reserva:",
-                        date: "Fecha:",
-                        time: "Hora:",
-                        people: "Comensales:",
-                        email: "Hemos enviado un email de confirmación a",
-                        back: "Volver al inicio"
+                    policies: {
+                        title: "Políticas de Reserva",
+                        deposit: {
+                            title: "Depósito Requerido",
+                            text: "• Menú Degustación: 70€ por persona<br>• Menú del Día: 50€ por persona"
+                        },
+                        cancellation: {
+                            title: "Política de Cancelación",
+                            text: "Las cancelaciones deben realizarse con un mínimo de 24 horas de antelación para el reembolso del depósito."
+                        },
+                        punctuality: {
+                            title: "Puntualidad",
+                            text: "Mantendremos su mesa reservada durante 15 minutos. Pasado este tiempo, la reserva quedará cancelada."
+                        }
                     }
-                },
-                contact: {
-                    title: "Contacto",
-                    hours: "Horarios"
                 },
                 footer: {
                     hours: "Horarios:",
                     follow: "Síguenos",
-                    language: "Idioma",
                     rights: "Todos los derechos reservados."
                 }
             },
@@ -905,6 +1146,7 @@
                     home: "Home",
                     concept: "Concept",
                     menus: "Menus",
+                    wines: "Wines",
                     reservations: "Reservations"
                 },
                 hero: {
@@ -919,6 +1161,10 @@
                     text2: "Our commitment goes beyond meat: it's a tribute to the culture of fire, shared time, and the table as a meeting place. Here, asado is not just cooking, it's ceremony."
                 },
                 pillars: {
+                    respect: {
+                        title: "Respect for the Product",
+                        text: "We work with local and seasonal products, valuing each cut and understanding the animal completely through the tradition of Argentine asado."
+                    },
                     tradition: {
                         title: "Argentine Tradition",
                         text: "The art of the grill passed down through generations. Classic asado techniques worked with time and respect for fire."
@@ -949,6 +1195,14 @@
                     },
                     download: "Download Menu PDF"
                 },
+                wines: {
+                    title: "Wine List",
+                    aperitivos: "Aperitifs & Sparkling",
+                    blancos: "White Wines",
+                    tintos: "Red Wines",
+                    argentinos: "Argentine Reds",
+                    dulces: "Dessert Wines"
+                },
                 reservations: {
                     title: "Book Your Table",
                     form: {
@@ -960,25 +1214,25 @@
                         comments: "Additional comments",
                         submit: "Confirm Reservation"
                     },
-                    confirmation: {
-                        title: "Reservation Confirmed",
-                        thanks: "Thank you for your reservation",
-                        details: "Your reservation details:",
-                        date: "Date:",
-                        time: "Time:",
-                        people: "Guests:",
-                        email: "We have sent a confirmation email to",
-                        back: "Back to home"
+                    policies: {
+                        title: "Reservation Policies",
+                        deposit: {
+                            title: "Required Deposit",
+                            text: "• Tasting Menu: €70 per person<br>• Daily Menu: €50 per person"
+                        },
+                        cancellation: {
+                            title: "Cancellation Policy",
+                            text: "Cancellations must be made at least 24 hours in advance for deposit refund."
+                        },
+                        punctuality: {
+                            title: "Punctuality",
+                            text: "We will hold your table for 15 minutes. After this time, the reservation will be cancelled."
+                        }
                     }
-                },
-                contact: {
-                    title: "Contact",
-                    hours: "Hours"
                 },
                 footer: {
                     hours: "Hours:",
                     follow: "Follow us",
-                    language: "Language",
                     rights: "All rights reserved."
                 }
             },
@@ -987,6 +1241,7 @@
                     home: "Accueil",
                     concept: "Concept",
                     menus: "Menus",
+                    wines: "Vins",
                     reservations: "Réservations"
                 },
                 hero: {
@@ -1001,6 +1256,10 @@
                     text2: "Notre engagement va au-delà de la viande : c'est un hommage à la culture du feu, du temps partagé, de la table comme lieu de rencontre. Ici, l'asado n'est pas seulement de la cuisine, c'est une cérémonie."
                 },
                 pillars: {
+                    respect: {
+                        title: "Respect du Produit",
+                        text: "Nous travaillons avec des produits locaux et de saison, en valorisant chaque pièce et en comprenant l'animal de manière complète à travers la tradition de l'asado argentin."
+                    },
                     tradition: {
                         title: "Tradition Argentine",
                         text: "L'art du grill transmis de génération en génération. Les techniques classiques de l'asado travaillées avec temps et respect du feu."
@@ -1031,6 +1290,14 @@
                     },
                     download: "Télécharger Menu PDF"
                 },
+                wines: {
+                    title: "Carte des Vins",
+                    aperitivos: "Apéritifs et Mousseux",
+                    blancos: "Vins Blancs",
+                    tintos: "Vins Rouges",
+                    argentinos: "Rouges Argentins",
+                    dulces: "Vins Doux"
+                },
                 reservations: {
                     title: "Réservez Votre Table",
                     form: {
@@ -1042,25 +1309,25 @@
                         comments: "Commentaires",
                         submit: "Confirmer la Réservation"
                     },
-                    confirmation: {
-                        title: "Réservation Confirmée",
-                        thanks: "Merci pour votre réservation",
-                        details: "Détails de votre réservation:",
-                        date: "Date:",
-                        time: "Heure:",
-                        people: "Convives:",
-                        email: "Nous avons envoyé un email de confirmation à",
-                        back: "Retour à l'accueil"
+                    policies: {
+                        title: "Politiques de Réservation",
+                        deposit: {
+                            title: "Acompte Requis",
+                            text: "• Menu Dégustation: 70€ par personne<br>• Menu du Jour: 50€ par personne"
+                        },
+                        cancellation: {
+                            title: "Politique d'Annulation",
+                            text: "Les annulations doivent être effectuées au moins 24 heures à l'avance pour le remboursement de l'acompte."
+                        },
+                        punctuality: {
+                            title: "Ponctualité",
+                            text: "Nous garderons votre table pendant 15 minutes. Passé ce délai, la réservation sera annulée."
+                        }
                     }
-                },
-                contact: {
-                    title: "Contact",
-                    hours: "Horaires"
                 },
                 footer: {
                     hours: "Horaires:",
                     follow: "Suivez-nous",
-                    language: "Langue",
                     rights: "Tous droits réservés."
                 }
             },
@@ -1069,6 +1336,7 @@
                     home: "Hasiera",
                     concept: "Kontzeptua",
                     menus: "Menuak",
+                    wines: "Ardoak",
                     reservations: "Erreserbak"
                 },
                 hero: {
@@ -1083,6 +1351,10 @@
                     text2: "Gure konpromisoa haragitik haratago doa: suaren kulturari, partekatutako denborari eta mahaia topaketa-leku gisa omenaldi bat da. Hemen asadoa ez da bakarrik sukaldea, zermonia da."
                 },
                 pillars: {
+                    respect: {
+                        title: "Produktuarekiko Errespetua",
+                        text: "Tokiko eta denboraldiko produktuekin lan egiten dugu, ebaki bakoitzari balioa emanez eta animalia osorik ulertuz asado argentinarraren tradizioaren bidez."
+                    },
                     tradition: {
                         title: "Argentinar Tradizioa",
                         text: "Belaunaldiz belaunaldi transmititutako parrilla-artea. Asadoaren teknika klasikoak denbora eta suarekiko errespetuarekin lan eginda."
@@ -1113,6 +1385,14 @@
                     },
                     download: "Karta PDF Deskargatu"
                 },
+                wines: {
+                    title: "Ardo Karta",
+                    aperitivos: "Aperitiboak eta Espumosoak",
+                    blancos: "Ardo Zuriak",
+                    tintos: "Ardo Gorriak",
+                    argentinos: "Argentinar Gorriak",
+                    dulces: "Ardo Gozoak"
+                },
                 reservations: {
                     title: "Erreserbatu Zure Mahaia",
                     form: {
@@ -1124,31 +1404,30 @@
                         comments: "Iruzkin gehigarriak",
                         submit: "Erreserba Baieztatu"
                     },
-                    confirmation: {
-                        title: "Erreserba Baieztatuta",
-                        thanks: "Eskerrik asko zure erreserba",
-                        details: "Zure erreserbaren xehetasunak:",
-                        date: "Data:",
-                        time: "Ordua:",
-                        people: "Mahaikideak:",
-                        email: "Baieztapen email bat bidali dugu hona",
-                        back: "Hasierara itzuli"
+                    policies: {
+                        title: "Erreserba Politikak",
+                        deposit: {
+                            title: "Beharrezko Deposituak",
+                            text: "• Dastaketa Menua: 70€ pertsonako<br>• Eguneko Menua: 50€ pertsonako"
+                        },
+                        cancellation: {
+                            title: "Baliogabetze Politika",
+                            text: "Baliogabetzeak gutxienez 24 ordu lehenago egin behar dira depositua itzultzeko."
+                        },
+                        punctuality: {
+                            title: "Puntualtasuna",
+                            text: "Zure mahaia 15 minutuz gordeko dugu. Denbora hau igarota, erreserba baliogabetuko da."
+                        }
                     }
-                },
-                contact: {
-                    title: "Kontaktua",
-                    hours: "Ordutegia"
                 },
                 footer: {
                     hours: "Ordutegia:",
                     follow: "Jarraitu gaitzazu",
-                    language: "Hizkuntza",
                     rights: "Eskubide guztiak erreserbatuak."
                 }
             }
         };
 
-        // DATOS DE MENÚS
         const menuData = {
             carta: {
                 'embutidos-curados': [
@@ -1215,17 +1494,20 @@
         let currentMenu = 'carta';
         let currentFilter = 'all';
 
-        // FUNCIÓN DE TRADUCCIÓN
         function translate() {
             document.querySelectorAll('[data-i18n]').forEach(elem => {
                 const keys = elem.getAttribute('data-i18n').split('.');
                 let value = translations[currentLang];
                 keys.forEach(key => value = value[key]);
-                elem.textContent = value;
+                
+                if (elem.innerHTML.includes('<br>')) {
+                    elem.innerHTML = value;
+                } else {
+                    elem.textContent = value;
+                }
             });
         }
 
-        // RENDERIZAR MENÚ
         function renderMenu() {
             const container = document.getElementById('menuContent');
             container.innerHTML = '';
@@ -1272,13 +1554,11 @@
             }
         }
 
-        // CAMBIAR IDIOMA
         document.getElementById('langSelector').addEventListener('change', (e) => {
             currentLang = e.target.value;
             translate();
         });
 
-        // TABS DE MENÚ
         document.querySelectorAll('.menu-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
@@ -1288,7 +1568,6 @@
             });
         });
 
-        // FILTROS
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1298,12 +1577,10 @@
             });
         });
 
-        // VALIDAR FECHA (NO FECHAS PASADAS)
         const fechaInput = document.getElementById('fecha');
         const today = new Date().toISOString().split('T')[0];
         fechaInput.setAttribute('min', today);
 
-        // FORMULARIO DE RESERVA
         document.getElementById('reservaForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -1313,41 +1590,68 @@
             const horario = document.querySelector('input[name="horario"]:checked').value;
             const personas = document.getElementById('personas').value;
 
-            // Guardar en localStorage
             const reserva = { nombre, email, fecha, horario, personas };
             localStorage.setItem('ultimaReserva', JSON.stringify(reserva));
 
-            // Mostrar confirmación
             const formattedDate = new Date(fecha).toLocaleDateString('es-ES');
             alert(`✓ Reserva Confirmada!\n\nGracias ${nombre},\n\nFecha: ${formattedDate}\nHora: ${horario}\nPersonas: ${personas}\n\nHemos enviado una confirmación a ${email}`);
             
-            // Resetear formulario
             e.target.reset();
         });
 
-        // INICIALIZAR
         translate();
         renderMenu();
+
+        // Manejo de reproducción de videos
+        function setupVideo(videoId, buttonId) {
+            const video = document.getElementById(videoId);
+            const playButton = document.getElementById(buttonId);
+            
+            if (!video || !playButton) return;
+
+            // Intentar autoplay
+            video.play().then(() => {
+                playButton.classList.add('hidden');
+            }).catch(() => {
+                // Si autoplay falla, mostrar botón
+                playButton.classList.remove('hidden');
+            });
+
+            // Click en botón para reproducir
+            playButton.addEventListener('click', () => {
+                video.play();
+                playButton.classList.add('hidden');
+            });
+
+            // Si el video se reproduce, ocultar botón
+            video.addEventListener('playing', () => {
+                playButton.classList.add('hidden');
+            });
+
+            // Si el video se pausa, mostrar botón
+            video.addEventListener('pause', () => {
+                playButton.classList.remove('hidden');
+            });
+
+            // Verificar si el video cargó correctamente
+            video.addEventListener('error', (e) => {
+                console.error('Error al cargar video:', videoId, e);
+                playButton.style.background = 'rgba(255, 0, 0, 0.8)';
+            });
+        }
+
+        // Inicializar videos cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setupVideo('heroVideo', 'playButtonHero');
+                setupVideo('conceptoVideo', 'playButtonConcepto');
+            });
+        } else {
+            setupVideo('heroVideo', 'playButtonHero');
+            setupVideo('conceptoVideo', 'playButtonConcepto');
+        }
     </script>
-<script>
-document.querySelectorAll("video").forEach(video => {
-video.muted = true;
-video.setAttribute("muted", "");
-video.play().catch(() => {});
-});
-</script>
 </body>
-</html>>HARAGI</h4>
-                <p data-i18n="footer.hours">Horarios:</p>
-                <p>L-D: 13:00-16:00</p>
-                <p>19:00-23:00</p>
-            </div>
-            <div class="footer-section">
-                <h4 data-i18n="footer.follow">Síguenos</h4>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-            </div>
-            <div class="footer-section">
-                <h4
+</html>
 
 
